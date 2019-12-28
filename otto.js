@@ -46,8 +46,8 @@ function walk_forward(servo1, servo2, servo3, servo4){
 function walk_step1(servo1, servo2, servo3, servo4) {
 	servo1.angle(125);
 	servo2.angle(125);
-	servo3.angle(45);
-	servo4.angle(90);
+	servo3.angle(20);
+	servo4.angle(130);
 }
 
 function walk_step2(servo1, servo2, servo3, servo4) {
@@ -89,10 +89,11 @@ function dance_step2(servo1, servo2, servo3, servo4) {
 }
 
 function stop(servo1, servo2, servo3, servo4) {
-	servo1.angle(90);
+	/*servo1.angle(90);
 	servo2.angle(90);
 	servo3.angle(90);
-	servo4.angle(90);
+	servo4.angle(90);*/
+	
 }
 
 function loopSleep(_loopLimit,_interval, _mainFunc){
