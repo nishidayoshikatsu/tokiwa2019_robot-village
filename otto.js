@@ -9,7 +9,6 @@ obniz.onconnect = async function () {
 	walk_forward(servo1, servo2, servo3, servo4);
   })
   $("#walk1").on('touchend mouseup', function(){
-	//motorA.stop(); //ボタンが離されたら止める
 	stop(servo1, servo2, servo3, servo4);
   })
 
@@ -17,7 +16,6 @@ obniz.onconnect = async function () {
 	walk_forward(servo1, servo2, servo3, servo4);
   })
   $("#walk2").on('touchend mouseup', function(){
-	//motorA.stop(); //ボタンが離されたら止める
 	stop(servo1, servo2, servo3, servo4);
   })
 
@@ -25,7 +23,6 @@ obniz.onconnect = async function () {
 	dance(servo1, servo2, servo3, servo4);
   })
   $("#dance").on('touchend mouseup', function(){
-	//motorA.stop(); //ボタンが離されたら止める
 	stop(servo1, servo2, servo3, servo4);
   })
 
@@ -36,10 +33,12 @@ obniz.onconnect = async function () {
 
 function walk_forward(servo1, servo2, servo3, servo4){
 	loopSleep(8, 800, function(i){
-		if(i % 2 == 0) {
+		if(i % 3 == 0) {
 			walk_step1(servo1, servo2, servo3, servo4);
-		} else {
+		} else if(i % 3 == 1){
 			walk_step2(servo1, servo2, servo3, servo4);
+		} else {
+			walk_step3(servo1, servo2, servo3, servo4);
 		}
 	});
 }
@@ -47,15 +46,22 @@ function walk_forward(servo1, servo2, servo3, servo4){
 function walk_step1(servo1, servo2, servo3, servo4) {
 	servo1.angle(125);
 	servo2.angle(125);
-	servo3.angle(90);
-	servo4.angle(50);
+	servo3.angle(45);
+	servo4.angle(90);
 }
 
 function walk_step2(servo1, servo2, servo3, servo4) {
-	servo1.angle(55);
-	servo2.angle(55);
-	servo3.angle(70);
-	servo4.angle(70);
+	servo1.angle(90);
+	servo2.angle(90);
+	servo3.angle(90);
+	servo4.angle(90);
+}
+
+function walk_step3(servo1, servo2, servo3, servo4) {
+	servo1.angle(125);
+	servo2.angle(125);
+	servo3.angle(90);
+	servo4.angle(45);
 }
 
 function dance(servo1, servo2, servo3, servo4){
