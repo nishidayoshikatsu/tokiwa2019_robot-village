@@ -13,7 +13,7 @@ obniz.onconnect = async function () {
   })
 
   $("#walk2").on('touchstart mousedown', function(){
-	walk_forward(servo1, servo2, servo3, servo4);
+	walk_back(servo1, servo2, servo3, servo4);
   })
   $("#walk2").on('touchend mouseup', function(){
 	stop(servo1, servo2, servo3, servo4);
@@ -32,13 +32,15 @@ obniz.onconnect = async function () {
 };
 
 function walk_forward(servo1, servo2, servo3, servo4){
-	loopSleep(8, 800, function(i){
-		if(i % 3 == 0) {
+	loopSleep(20, 300, function(i){
+		if(i % 4 == 0) {
 			walk_step1(servo1, servo2, servo3, servo4);
-		} else if(i % 3 == 1){
+		} else if(i % 4 == 1){
 			walk_step2(servo1, servo2, servo3, servo4);
-		} else {
+		} else if(i % 4 == 2){
 			walk_step3(servo1, servo2, servo3, servo4);
+		} else {
+			walk_step4(servo1, servo2, servo3, servo4);
 		}
 	});
 }
@@ -46,22 +48,71 @@ function walk_forward(servo1, servo2, servo3, servo4){
 function walk_step1(servo1, servo2, servo3, servo4) {
 	servo1.angle(125);
 	servo2.angle(125);
-	servo3.angle(90);
-	servo4.angle(160);
+	servo3.angle(85);
+	servo4.angle(95);
 }
 
 function walk_step2(servo1, servo2, servo3, servo4) {
-	servo1.angle(90);
-	servo2.angle(90);
-	servo3.angle(90);
-	servo4.angle(90);
+	servo1.angle(80);
+	servo2.angle(80);
+	servo3.angle(85);
+	servo4.angle(95);
 }
 
 function walk_step3(servo1, servo2, servo3, servo4) {
-	servo1.angle(125);
+	servo1.angle(80);
+	servo2.angle(80);
+	servo3.angle(100);
+	servo4.angle(85);
+}
+
+function walk_step4(servo1, servo2, servo3, servo4) {
+	servo1.angle(80);
 	servo2.angle(125);
-	servo3.angle(90);
-	servo4.angle(45);
+	servo3.angle(100);
+	servo4.angle(85);
+}
+
+function walk_back(servo1, servo2, servo3, servo4){
+	loopSleep(20, 300, function(i){
+		if(i % 4 == 0) {
+			back_step1(servo1, servo2, servo3, servo4);
+		} else if(i % 4 == 1){
+			back_step2(servo1, servo2, servo3, servo4);
+		} else if(i % 4 == 2){
+			back_step3(servo1, servo2, servo3, servo4);
+		} else {
+			back_step4(servo1, servo2, servo3, servo4);
+		}
+	});
+}
+
+function back_step1(servo1, servo2, servo3, servo4) {
+	servo1.angle(180-125);
+	servo2.angle(180-125);
+	servo3.angle(85);
+	servo4.angle(95);
+}
+
+function back_step2(servo1, servo2, servo3, servo4) {
+	servo1.angle(180-80);
+	servo2.angle(180-80);
+	servo3.angle(85);
+	servo4.angle(95);
+}
+
+function back_step3(servo1, servo2, servo3, servo4) {
+	servo1.angle(180-80);
+	servo2.angle(180-80);
+	servo3.angle(100);
+	servo4.angle(85);
+}
+
+function back_step4(servo1, servo2, servo3, servo4) {
+	servo1.angle(180-80);
+	servo2.angle(180-125);
+	servo3.angle(100);
+	servo4.angle(85);
 }
 
 function dance(servo1, servo2, servo3, servo4){
@@ -89,11 +140,10 @@ function dance_step2(servo1, servo2, servo3, servo4) {
 }
 
 function stop(servo1, servo2, servo3, servo4) {
-	/*servo1.angle(90);
+	servo1.angle(90);
 	servo2.angle(90);
 	servo3.angle(90);
-	servo4.angle(90);*/
-	
+	servo4.angle(90);
 }
 
 function loopSleep(_loopLimit,_interval, _mainFunc){
