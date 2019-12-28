@@ -84,6 +84,8 @@ unsigned long timerMillis = 0;
 double Duration = 0; //受信した間隔
 double Distance = 0; //距離
 
+long randNumber;
+
 void setup() {
   Serial.begin(9600);
   Otto.initHUMANOID(PIN_YL, PIN_YR, PIN_RL, PIN_RR, PIN_LA, PIN_RA, true, PIN_NoiseSensor, PIN_Buzzer, PIN_Trigger, PIN_Echo); //Set the servo pins and ultrasonic pins
@@ -96,14 +98,6 @@ void setup() {
 
   pinMode( PIN_Echo, INPUT );
   pinMode( PIN_Trigger, OUTPUT );
-
-  //Interrupts
-  //enableInterrupt(PIN_Button, ButtonPushed, RISING);
-  if (enableRGB == true) {  // ONLY IF RGB NEOPIXEL OPTION IS SELECTED
-  NeopixelLed.begin();
-  NeopixelLed.show(); // Initialize all pixels to 'off'
-  NeopixelLed.setBrightness(64); // Op Brightness
-  }
 
   //Otto wake up!
   Otto.sing(S_connection);
@@ -119,16 +113,16 @@ void setup() {
   //Smile for a happy Otto :)
   Otto.putMouth(smile);
   Otto.sing(S_happy);
-  delay(200);
+  delay(100);
   previousMillis = millis();
 // if Pin 10 is LOW then place OTTO's servos in home mode to enable easy assembly, 
 // when you have finished assembling Otto, remove the link between pin 10 and GND
   while (digitalRead(PIN_ASSEMBLY) == LOW) {
     Otto.home();
     Otto.sing(S_happy_short);   // sing every 5 seconds so we know OTTO is still working
-    delay(500);
+    delay(100);
   }
-delay (500);
+delay (100);
 Otto.clearMouth();
 // test for matrix
  matrix = 0b000000000000000000000000000001;// set the variable to the first LED bottom RHS again
@@ -138,12 +132,12 @@ Otto.clearMouth();
       delay(250);// wait for 1/4 second, this is so that you can see the image on the Matrix 
       Otto.clearMouth();// clear the Matrix display so that it is ready for the next image
     }
-  delay(500);// wait for 1 second, this is so that you can see the image on the Matrix for 1 second before repeating
+  delay(100);// wait for 1 second, this is so that you can see the image on the Matrix for 1 second before repeating
   Otto.clearMouth();  
 // write a text string of no more than nine limited characters and scroll at a speed between 50 and 150 (FAST and SLOW)
  // limited characters are : CAPITALS A to Z   NUMBERS 0 to 9    'SPACE'  : ; < >  = @ 
 Otto.writeText (message1, 70);
-delay (200);
+delay (100);
 Otto.clearMouth();
 Otto.putMouth(smile);
 }
@@ -163,12 +157,19 @@ void loop() {
     Serial.println(" cm");
   }
 
-  if(Distance <= 5.0){
-    Serial.println("back");
-    Otto.walk(1, 1300, -1);
+  randNumber = random(100); // 0から99の乱数を生成
+  if(randNumber <= 85){
+	if(Distance <= 5.0){
+		for(int i=0;i<10;i++){
+			Serial.println("back");
+			Otto.walk(1, 1300, -1);
+		}
+		} else {
+		Serial.println("straight");
+		Otto.walk(1, 1000, 1);
+	}
   } else {
-    Serial.println("straight");
-    Otto.walk(1, 1000, 1);
+	Otto.updown(6, 500, BIG);
   }
   delay(50);
 }
