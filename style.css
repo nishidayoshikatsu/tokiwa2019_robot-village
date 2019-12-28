@@ -1,0 +1,99 @@
+body{
+    margin: 0px;
+    background-color: #EBE7CC;
+  }
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*footer高さ*/
+    box-sizing: border-box;/*全て含めてmin-height:100vhに*/
+}
+
+.logo{
+    height: 150px;
+}
+
+.title{
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    color: #84460C;
+    /* margin: 50px; */
+}
+
+.select_machines{
+    height: 180px;
+    width: 500px;
+    border: 10px solid #84460C;
+    font-family: 'ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
+    text-align: center;
+	margin:  0 auto;
+}
+
+.select_machines a{
+    line-height: 180px;
+    font-size: 55px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #EBE7CC;
+  }
+  
+  #teamb_logo{
+    text-align: center;
+    padding-top: 40px;
+  }
+  
+  .footer_logo{
+    color: #84460C;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN',sans-serif;
+  }
+  
+  .fotter{
+    /* height: 100px; */
+    width: 100%;
+    position: absolute;
+    /*←絶対位置*/
+    bottom: 0; /*下に固定*/
+    background-color: pink;
+  }
+  .menue{
+    height: 80vh;
+    /* background-color: aquamarine; */
+  }
+  
+  .btn-gradient{
+    text-align: center;
+    height: 100px;
+    width: 70%;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #E44531;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #c58668;
+    border-radius:25px;
+  }
+  
+  .btn-gradient:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    border-radius:25px;
+  }
+
+.select_contents {
+  background-color: #f44336;
+  width: 500px;
+  height: 200px;
+  font-size: 50px;
+  color: white;
+  /*border-color: brown;*/
+  border-width: 5px;
+  border-radius: 10px;
+  
+}
